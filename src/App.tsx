@@ -10,11 +10,12 @@ import PostListOne from "./components/PostListOne.tsx";
 import PostListTwo from "./components/PostListTwo.tsx";
 import {useState} from "react";
 import Post from "./components/Post.tsx";
+import CreatePost from "./components/CreatePost.tsx";
 
 
 function App() {
 
-    const [currentPage, setCurrentPage] = useState(<PostListOne/>)
+    const [currentPage, setCurrentPage] = useState(<CreatePost/>)
 return (
 <>
 
@@ -30,6 +31,10 @@ return (
 
     <button onClick={() => setCurrentPage(<Post id={1}/>)}>
         First Post
+    </button>
+
+    <button onClick={() => setCurrentPage(setCurrentPage)}>
+     New Post
     </button>
     <br/>
 

@@ -18,7 +18,7 @@ const Post = ({id}:PostProps) => {
         enabled:postQuery?.data?.userId !=null,
         queryFn:() => getUser(postQuery.data.userId)
     })
-    
+
 
     if(postQuery.isLoading) return <h1>Loading ...</h1>
 

@@ -15,7 +15,7 @@ import CreatePost from "./components/CreatePost.tsx";
 
 function App() {
 
-    const [currentPage, setCurrentPage] = useState(<CreatePost/>)
+    const [currentPage, setCurrentPage] = useState(<PostListOne/>)
 return (
 <>
 
@@ -33,7 +33,7 @@ return (
         First Post
     </button>
 
-    <button onClick={() => setCurrentPage(setCurrentPage)}>
+    <button onClick={() => setCurrentPage(<CreatePost setCurrentPage= {setCurrentPage} />)}>
      New Post
     </button>
     <br/>

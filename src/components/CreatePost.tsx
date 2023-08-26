@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {createPosts} from "../api/posts.ts";
 import Post from "./Post.tsx";
 
@@ -8,9 +8,14 @@ const CreatePost = ({setCurrentPage}) => {
     const titleRef = useRef()
     const bodyRef = useRef()
 
+    const queryClient = useQueryClient()
     const createPostMutation = useMutation({
         mutationFn:createPosts,
-        onSuccess:(data, variables, context) => {
+        onSuccess:(data) => {
+            //this will add new data to cache of the old data making it faster to fetch data
+            queryClient.setQueryData(["posts", data.id], data)
+
+            queryClient.invalidateQueries(['posts'], {exact:true})
             setCurrentPage(<Post id={data.id}/>)
         }
     })
